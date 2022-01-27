@@ -10,10 +10,10 @@ function SettingFrame({
 }) {
   return (
     <SettingFrameContainer isBackground={isBackground}>
-      <SettingFrameWrapper isButton={isButton}>
+      <FrameTitle isButton={isButton}>
         <span>{title}</span>
         {isButton && <button>추가하기</button>}
-      </SettingFrameWrapper>
+      </FrameTitle>
       { children }
     </SettingFrameContainer>
   );
@@ -31,7 +31,7 @@ const SettingFrameContainer = styled.div`
     background-color: ${({ isBackground }) => isBackground && BACKGROUND_DIMM_COLOR}; 
 `;
 
-const SettingFrameWrapper = styled.div`
+const FrameTitle = styled.div`
     display: flex;
     width: 100%;
     height: 50px;
