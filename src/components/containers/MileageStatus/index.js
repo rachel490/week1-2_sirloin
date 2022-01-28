@@ -3,7 +3,7 @@ import ToggleBtn from 'components/atoms/ToggleBtn';
 import React, { useState } from 'react';
 
 function MileageStatus() {
-  const [mileageStatus, setMileageStatus] = useState({ mileageStatus: false });
+  const [mileageStatus, setMileageStatus] = useState({ mileageStatus: true });
 
   function onCheckedChange() {
     setMileageStatus({ mileageStatus: !mileageStatus.mileageStatus });
