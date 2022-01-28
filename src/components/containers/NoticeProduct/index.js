@@ -16,6 +16,9 @@ function NoticeProduct() {
       foodCategory: '',
     },
   ]);
+  const [customList, setCustomList] = useState([
+    { customTitle: '', customDescription: '' },
+  ]);
 
   const handleInputChange = (event, index) => {
     const { name, value } = event.target;
@@ -98,7 +101,10 @@ function NoticeProduct() {
                 value={info.foodCategory}
                 onChange={(event) => handleInputChange(event, index)}
               />
-              <ContainerListCustomItem />
+              <ContainerListCustomItem
+                listState={customList}
+                setListState={setCustomList}
+              />
             </ContainerList>
           </ContainerInnerBox>
         ))}

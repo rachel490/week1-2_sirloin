@@ -1,31 +1,30 @@
 import Button from 'components/atoms/Button';
 import Input from 'components/atoms/Input';
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
-function ContainerListCustomItem() {
-  const [customList, setCustomList] = useState([{ customTitle: '', customDescription: '' }]);
-
+function ContainerListCustomItem({ listState, setListState }) {
   const handleInputChange = (event, index) => {
     const { customTitle, customDescription } = event.target;
-    const list = [...customList];
+    const list = [...listState];
     list[index][customTitle] = customDescription;
-    setCustomList(list);
+    setListState(list);
   };
 
   const handleRemoveClick = (index) => {
-    const list = [...customList];
+    const list = [...listState];
     list.splice(index, 1);
-    setCustomList(list);
+    setListState(list);
   };
 
   const handleAddClick = () => {
-    setCustomList([...customList, { customTitle: '', customDescription: '' }]);
+    setListState([...listState, { customTitle: '', customDescription: '' }]);
   };
 
   return (
     <>
-      {customList.map((item, index) => (
+      {listState.map((item, index) => (
         <CustomItemList key={item.customTitle}>
           <Input placeholder="항목 제목 자유 입력" value={item.customTitle} onChange={(event) => handleInputChange(event, index)} />
           <Input placeholder="내용을 입력해주세요." value={item.customDescription} onChange={(event) => handleInputChange(event, index)} />
@@ -58,5 +57,10 @@ const CustomItemList = styled.div`
   grid-template-columns: 3fr 4fr 1fr;
   margin: 14px 0 14px 0;
 `;
+
+ContainerListCustomItem.propTypes = {
+  listState: PropTypes.arrayOf(PropTypes.array).isRequired,
+  setListState: PropTypes.func.isRequired,
+};
 
 export default ContainerListCustomItem;
