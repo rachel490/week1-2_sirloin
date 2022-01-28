@@ -1,45 +1,54 @@
-/* eslint-disable react/forbid-prop-types */
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
 import { MdClose } from 'react-icons/md';
+import PropTypes from 'prop-types';
 
-function ImageUpload({ imageFiles, setImageFiles, type }) {
+function ImageUpload({ single }) {
+  const [imgFiles, setImgFiles] = useState([]);
+  const imgRef = useRef();
+
   const displayFileList = (e) => {
-    const newFile = e.target.files[0].name;
-
-    if (type === 'single') {
-      setImageFiles([newFile]);
-    } else if (imageFiles.every((item) => item !== newFile)) {
-      setImageFiles([newFile, ...imageFiles]);
+    const newFile = e.target.files[0]?.name;
+    const isSame = imgFiles.some((file) => file === newFile);
+    if (isSame) {
+      return;
+    }
+    if (single) {
+      setImgFiles([newFile]);
+    } else {
+      setImgFiles([newFile, ...imgFiles]);
     }
   };
 
-  const deleteImg = (e) => {
-    const target = e.target.parentNode.previousSibling.innerText;
-    const updatedFileList = imageFiles.filter((file) => file !== target);
-    setImageFiles(updatedFileList);
+  const deleteImg = (target) => {
+    const updatedFileList = imgFiles?.filter((file) => file !== target);
+    setImgFiles(updatedFileList);
+  };
+
+  const handleClick = () => {
+    imgRef.current.click();
   };
 
   return (
     <Wrap>
-      <AddBtn>
-        <Label htmlFor="imgUpload">
+      <InputBox>
+        <Button htmlFor="imgUpload" onClick={handleClick}>
           + 이미지 첨부
-          <Input
-            type="file"
-            accept="image/png, image/jpeg, image/jpg"
-            id="imgUpload"
-            onChange={displayFileList}
-          />
-        </Label>
-      </AddBtn>
+        </Button>
+        <Input
+          type="file"
+          accept="image/png, image/jpeg, image/jpg"
+          id="imgUpload"
+          onChange={displayFileList}
+          ref={imgRef}
+        />
+      </InputBox>
       <ul>
-        {imageFiles?.map((file) => (
-          <ListItem key={file} type={type}>
+        {imgFiles?.map((file) => (
+          <ListItem key={file}>
             <span>{file}</span>
             <DeleteBtn type="button">
-              <MdClose className="icon" onClick={deleteImg} />
+              <MdClose className="icon" onClick={() => deleteImg(file)} />
             </DeleteBtn>
           </ListItem>
         ))}
@@ -51,23 +60,21 @@ function ImageUpload({ imageFiles, setImageFiles, type }) {
 export default ImageUpload;
 
 ImageUpload.propTypes = {
-  imageFiles: PropTypes.array.isRequired,
-  setImageFiles: PropTypes.func.isRequired,
-  type: PropTypes.string,
+  single: PropTypes.bool,
 };
 
 ImageUpload.defaultProps = {
-  type: 'multiple',
+  single: false,
 };
 
 const Wrap = styled.div`
   display: flex;
   align-items: flex-start;
   padding: 20px;
-  border-top: 1px solid rgba(0,0,0,.1);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
 `;
 
-const AddBtn = styled.div`
+const InputBox = styled.div`
   display: flex;
   align-items: center;
 `;
@@ -76,11 +83,11 @@ const Input = styled.input`
   display: none;
 `;
 
-const Label = styled.label`
+const Button = styled.button`
   display: flex;
   align-items: center;
   padding: 7px 40px;
-  border: 1px solid #00264B;
+  border: 1px solid #00264b;
   border-radius: 5px;
   margin-right: 20px;
 `;
@@ -88,16 +95,16 @@ const Label = styled.label`
 const ListItem = styled.li`
   display: flex;
   align-items: center;
-  height: ${(props) => ((props.type === 'single') ? '40px' : '30px')};
+  height: 30px;
 
   span {
-    width: 85px;
+    width: 120px;
     height: 30px;
   }
 `;
 
 const DeleteBtn = styled.button`
-  border: 1px solid rgba(0,0,0,.3);
+  border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 50%;
   width: 25px;
   height: 25px;
