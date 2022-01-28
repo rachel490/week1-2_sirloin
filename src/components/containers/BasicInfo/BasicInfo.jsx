@@ -13,12 +13,52 @@ import styled from 'styled-components';
 import isSavedState, { registerFormState } from 'utils/globalState';
 
 function BasicInfo() {
+  const options = [
+    {
+      img: 'dd',
+      option: [
+        {
+          option1: 'Dd',
+          stock: 1,
+        },
+        {
+          option2: 'Dd',
+          stock: 1,
+        },
+      ],
+    },
+    {
+      img: 'dd',
+      option: [
+        {
+          option1: 'Dd',
+          stock: 1,
+        },
+        {
+          option2: 'Dd',
+          stock: 1,
+        },
+      ],
+    },
+  ];
+  // test
+  // console.log(options);
+  const countTotalStock = () => {
+    let totalStock = 0;
+    options.forEach((optionSet) => {
+      optionSet.option.forEach((option) => {
+        totalStock += option.stock;
+      });
+    });
+    console.log(totalStock);
+  };
+  console.log(countTotalStock);
+
   const isSaved = useRecoilValue(isSavedState);
   const [registerForm, setRegisterForm] = useRecoilState(registerFormState);
-  console.log(isSaved);
   const [basicInfo, setBasicInfo] = useState({});
+
   const handleBasicInfo = (key, input) => {
-    // console.log(key, input);
     setBasicInfo({
       ...basicInfo,
       [key]: input,
@@ -33,12 +73,12 @@ function BasicInfo() {
   };
 
   useEffect(() => {
-    saveData('key', 'value');
+    saveData('basicInfo', basicInfo);
   }, [isSaved]);
 
   useEffect(() => {
-    console.log(basicInfo);
-  }, [basicInfo]);
+    console.log(registerForm);
+  }, [registerForm]);
   return (
     <Wrapper>
       <SettingFrame title="상품기본정보">
