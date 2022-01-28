@@ -1,3 +1,4 @@
+import { BORDER_COLOR } from 'constants/color';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { MdCheckBox, MdCheckBoxOutlineBlank } from 'react-icons/md';
@@ -23,8 +24,6 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 2rem;
-  height: 2rem;
 `;
 
 const InputCheckBox = styled.input`
@@ -32,13 +31,15 @@ const InputCheckBox = styled.input`
 `;
 
 const CheckIcon = styled.div`
+  cursor: pointer;
+
   .checkedIcon {
     color: purple;
     font-size: 2rem;
   }
 
   .unCheckedIcon {
-    color: grey;
+    color: ${BORDER_COLOR};
     font-size: 2rem;
   }
 `;
