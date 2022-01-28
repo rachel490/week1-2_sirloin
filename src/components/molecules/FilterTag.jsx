@@ -1,46 +1,48 @@
 import { SettingFrameItem } from 'components/atoms';
 import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
+import { useRecoilState } from 'recoil';
+import { selectedTagState } from '../../recoil/atoms';
 
 function FilterTag() {
   const tags = [
     {
       id: 1,
-      name: "베스트",
+      name: '베스트',
     },
     {
       id: 2,
-      name: "베베",
+      name: '베베',
     },
     {
       id: 3,
-      name: "베나라",
+      name: '베나라',
     },
     {
       id: 4,
-      name: "구아바",
+      name: '구아바',
     },
     {
       id: 5,
-      name: "구아아",
+      name: '구아아',
     },
     {
       id: 6,
-      name: "tag1",
+      name: 'tag1',
     },
     {
       id: 7,
-      name: "tag2",
+      name: 'tag2',
     },
     {
       id: 8,
-      name: "tagg",
+      name: 'tagg',
     },
   ];
 
   const [search, setSearch] = useState('');
   const [onFocus, setOnFocus] = useState(false);
-  const [selectedTag, setSelectedTag] = useState([]);
+  const [selectedTag, setSelectedTag] = useRecoilState(selectedTagState);
   const inputRef = useRef();
 
   const deleteTag = (id) => {
