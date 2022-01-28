@@ -8,9 +8,14 @@ import ProductName from 'components/molecules/BasicInfo/ProductName';
 import Thumbnail from 'components/molecules/BasicInfo/Thumbnail';
 import TotalStock from 'components/molecules/BasicInfo/TotalStock';
 import React, { useEffect, useState } from 'react';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
+import isSavedState, { registerFormState } from 'utils/globalState';
 
 function BasicInfo() {
+  const isSaved = useRecoilValue(isSavedState);
+  const [registerForm, setRegisterForm] = useRecoilState(registerFormState);
+  console.log(isSaved);
   const [basicInfo, setBasicInfo] = useState({});
   const handleBasicInfo = (key, input) => {
     // console.log(key, input);
@@ -19,6 +24,17 @@ function BasicInfo() {
       [key]: input,
     });
   };
+
+  const saveData = (key, value) => {
+    setRegisterForm({
+      ...registerForm,
+      [key]: value,
+    });
+  };
+
+  useEffect(() => {
+    saveData('key', 'value');
+  }, [isSaved]);
 
   useEffect(() => {
     console.log(basicInfo);
