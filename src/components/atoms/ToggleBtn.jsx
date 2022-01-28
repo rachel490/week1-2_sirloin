@@ -2,11 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-function ToggleBtn({ size }) {
-  return <ToggleButton type="checkbox" size={size} />;
+function ToggleBtn({ size, onChange }) {
+  return <ToggleButton type="checkbox" size={size} onChange={onChange} />;
 }
 
 const ToggleButton = styled.input`
+    position:relative;
     width:${({ size }) => 53 * ((10 + size) / 10)}px;
     height:${({ size }) => 20 * ((10 + size) / 10)}px;
     -webkit-appearance:none;
@@ -38,6 +39,7 @@ const ToggleButton = styled.input`
 
 ToggleBtn.propTypes = {
   size: PropTypes.number,
+  onChange: PropTypes.func.isRequired,
 };
 
 ToggleBtn.defaultProps = {
