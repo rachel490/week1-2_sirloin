@@ -1,24 +1,30 @@
+/* eslint-disable react/require-default-props */
+/* eslint-disable react/button-has-type */
 import { BORDER_COLOR } from 'constants/color';
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import { MdCheckBox, MdCheckBoxOutlineBlank } from 'react-icons/md';
 
-function Checkbox() {
-  const [isChecked, setIsChecked] = useState(false);
-
+function Checkbox({ state, func }) {
   const handleCheck = () => {
-    setIsChecked(!isChecked);
+    func(state);
   };
 
   return (
     <Wrapper>
-      <InputCheckBox type="checkbox" checked={isChecked} readOnly name="" id="checkbox" />
+      <InputCheckBox type="checkbox" checked={state.isChecked} readOnly name="" id="checkbox" />
       <CheckIcon onClick={handleCheck}>
-        {isChecked ? <MdCheckBox className="checkedIcon" /> : <MdCheckBoxOutlineBlank className="unCheckedIcon" />}
+        {state.isChecked ? <MdCheckBox className="checkedIcon" /> : <MdCheckBoxOutlineBlank className="unCheckedIcon" />}
       </CheckIcon>
     </Wrapper>
   );
 }
+
+Checkbox.propTypes = {
+  state: PropTypes.objectOf(PropTypes.object),
+  func: PropTypes.func,
+};
 
 const Wrapper = styled.div`
   display: flex;

@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import { AiOutlineClose } from 'react-icons/ai';
 
-function SelectedCategory() {
+function SelectedCategory({ func }) {
   const onClose = () => {
-    ///
+    func();
   };
 
   return (
@@ -16,6 +17,10 @@ function SelectedCategory() {
     </Wrapper>
   );
 }
+
+SelectedCategory.propTypes = {
+  func: PropTypes.func.isRequired,
+};
 
 const Wrapper = styled.div`
   display: flex;
