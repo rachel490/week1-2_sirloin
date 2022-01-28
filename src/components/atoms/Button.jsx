@@ -9,14 +9,16 @@ import styled, { css } from 'styled-components';
 
 // eslint-disable-next-line react/prop-types
 // eslint-disable-next-line no-unused-vars
-function Button({ width, height, color, constrast, text, borderRadius }) {
+function Button({ width, height, color, constrast, text, borderRadius, onClick }) {
   return (
     <BtnContainer
       width={width}
       height={height}
       color={color}
       constrast={constrast}
-      borderRadius={borderRadius}>
+      borderRadius={borderRadius}
+      onClick={onClick}
+      >
       {text}
     </BtnContainer>
   );
@@ -28,8 +30,8 @@ const BtnContainer = styled.button`
     justify-content: center;
     align-items: center;
     padding: 0.2em 1em 0.4em 1em;
-    border: solid ${color} ${borderRadius}px;
-    border-radius: 4px;
+    border: solid ${color} 1px;
+    border-radius: ${borderRadius}px;
     width: ${width};
     height: ${height};
     ${constrast
