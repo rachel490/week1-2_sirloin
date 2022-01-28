@@ -89,7 +89,7 @@ function BasicInfo() {
             <ProductName handleBasicInfo={handleBasicInfo} title="productName" />
           </SettingFramItemContainer>
           <SettingFramItemContainer>
-            <ProductCode />
+            <ProductCode handleBasicInfo={handleBasicInfo} title="productCode" />
           </SettingFramItemContainer>
         </SettingFramItemWrapper>
         <ProductInfo handleBasicInfo={handleBasicInfo} title="productInfo" />

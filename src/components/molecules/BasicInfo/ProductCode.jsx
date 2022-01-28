@@ -1,19 +1,29 @@
 import SettingFramItem from 'components/atoms/SettingFrameItem';
 import { BORDER_COLOR } from 'constants/color';
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
-function ProductCode() {
+function ProductCode({ handleBasicInfo, title }) {
+  const code = Date.now();
+  useEffect(() => {
+    handleBasicInfo(title, code);
+  }, []);
   return (
     <Wrapper>
       <SettingFramItem title="상품코드">
         <Container>
-          <Code>dd</Code>
+          <Code>{code}</Code>
         </Container>
       </SettingFramItem>
     </Wrapper>
   );
 }
+
+ProductCode.propTypes = {
+  title: PropTypes.string.isRequired,
+  handleBasicInfo: PropTypes.func.isRequired,
+};
 
 const Wrapper = styled.div`
   height: 100%;
