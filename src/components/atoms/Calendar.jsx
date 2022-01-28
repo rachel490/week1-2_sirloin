@@ -1,35 +1,30 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useState } from 'react';
+import React from 'react';
 import TextField from '@mui/material/TextField';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import PropTypes from 'prop-types';
 import { DatePicker, DateTimePicker } from '@mui/lab';
 
-function Calendar({ time }) {
-  const [value, setValue] = useState('YYYY-MM-DD HH:MM"');
-
+function Calendar({ time, state, onChange }) {
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       {time ? (
         <DateTimePicker
           renderInput={(props) => <TextField {...props} />}
-          value={value}
+          value={state}
           inputFormat="yyyy-MM-dd hh:mm"
           onChange={(newValue) => {
-            setValue(newValue);
+            onChange(newValue);
           }}
         />
       ) : (
         <DatePicker
-          disableFuture
-          openTo="year"
+          openTo="day"
           inputFormat="yyyy-MM-dd"
           views={['year', 'month', 'day']}
-          value={value}
-          onChange={(newValue) => {
-            setValue(newValue);
-          }}
+          value={state}
+          onChange={onChange}
           renderInput={(params) => <TextField {...params} />}
         />
       )}
@@ -41,6 +36,8 @@ Calendar.defaultProps = { time: false };
 
 Calendar.propTypes = {
   time: PropTypes.bool,
+  state: PropTypes.instanceOf(Date).isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
 export default Calendar;
