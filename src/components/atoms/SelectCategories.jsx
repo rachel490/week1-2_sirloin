@@ -3,8 +3,9 @@ import SelectedCategory from 'components/atoms/SelectedCategory';
 import { BORDER_COLOR } from 'constants/color';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
-function SelectCategories() {
+function SelectCategories({ handleBasicInfo, title }) {
   const [categories, setCategories] = useState([
     {
       id: 0,
@@ -38,14 +39,20 @@ function SelectCategories() {
     setCheckedList(checkedList);
   }, []);
 
+  useEffect(() => {
+    handleBasicInfo(title, checkedList);
+  }, [checkedList]);
+
   const handleCheckList = (cate) => {
-    if (checkedList.includes(cate.id)) {
-      const filteredCheckedList = checkedList.filter((checkedItem) => checkedItem !== cate.id);
+    const isChecked = checkedList.some((checkedItem) => checkedItem.id === cate.id);
+    if (isChecked) {
+      const filteredCheckedList = checkedList.filter((checkedItem) => checkedItem.id !== cate.id);
       setCheckedList(filteredCheckedList);
     } else {
-      setCheckedList([...checkedList, cate.id]);
+      setCheckedList([...checkedList, cate]);
     }
   };
+
   return (
     <Wrapper>
       <CateContainer>
@@ -66,7 +73,7 @@ function SelectCategories() {
       <SelectedCateContainer>
         <ul>
           {categories.map((category) => (
-            checkedList.includes(category.id)
+            checkedList.some((checkedItem) => checkedItem.id === category.id)
               ? (
                 <SelectedCategory
                   state={category}
@@ -81,6 +88,11 @@ function SelectCategories() {
     </Wrapper>
   );
 }
+
+SelectCategories.propTypes = {
+  title: PropTypes.string.isRequired,
+  handleBasicInfo: PropTypes.func.isRequired,
+};
 
 const Wrapper = styled.div`
   display: flex;

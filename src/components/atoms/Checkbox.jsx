@@ -6,15 +6,19 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { MdCheckBox, MdCheckBoxOutlineBlank } from 'react-icons/md';
 
-function Checkbox({ state, func, checkedList }) {
+function Checkbox({
+  state, func, checkedList,
+}) {
   const handleCheck = () => {
     func(state);
   };
 
+  const isChecked = checkedList.some((checkedItem) => checkedItem.id === state.id);
+
   return (
     <Wrapper>
       <CheckIcon onClick={handleCheck}>
-        {checkedList.includes(state.id) ? <MdCheckBox className="checkedIcon" /> : <MdCheckBoxOutlineBlank className="unCheckedIcon" />}
+        {isChecked ? <MdCheckBox className="checkedIcon" /> : <MdCheckBoxOutlineBlank className="unCheckedIcon" />}
       </CheckIcon>
     </Wrapper>
   );
