@@ -8,11 +8,15 @@ function SelectCategories() {
   const [categories, setCategories] = useState([
     {
       id: 0,
-      name: 'selected cate',
+      name: '선택한 카테고리명',
     },
     {
       id: 2,
-      name: 'selected cate2',
+      name: '카테고리명2',
+    },
+    {
+      id: 3,
+      name: '카테고리 예시',
     },
   ]);
   const [checkedList, setCheckedList] = useState([]);
@@ -33,7 +37,7 @@ function SelectCategories() {
   return (
     <Wrapper>
       <CateContainer>
-        <CateList>
+        <ul>
           {categories.map((category) => (
             <CateItem>
               <Checkbox
@@ -45,16 +49,22 @@ function SelectCategories() {
             </CateItem>
           ))}
 
-        </CateList>
+        </ul>
       </CateContainer>
       <SelectedCateContainer>
-        <SelectedCateList>
+        <ul>
           {categories.map((category) => (
             checkedList.includes(category.id)
-              ? <SelectedCategory categoryName={category.name} />
-              : ''
+              ? (
+                <SelectedCategory
+                  state={category}
+                  categoryName={category.name}
+                  func={() => handleCheckList(category)}
+                />
+              )
+              : ('')
           ))}
-        </SelectedCateList>
+        </ul>
       </SelectedCateContainer>
     </Wrapper>
   );
@@ -68,27 +78,25 @@ const Wrapper = styled.div`
 
 const CateContainer = styled.div`
   flex: 5;
+  padding: 1rem;
   border: 1px solid ${BORDER_COLOR};
   border-radius: 0.1rem;
 `;
-
-const CateList = styled.ul``;
 
 const CateItem = styled.li`
   display: flex;
 `;
 
-const CateTitle = styled.p``;
+const CateTitle = styled.p`
+  margin-left: 0.5rem;
+`;
 
 const SelectedCateContainer = styled.div`
   flex: 5;
+  padding: 1rem;
   margin-left: 0.5rem;
   border: 1px solid ${BORDER_COLOR};
   border-radius: 0.1rem;
-`;
-
-const SelectedCateList = styled.ul`
-  //
 `;
 
 export default SelectCategories;
