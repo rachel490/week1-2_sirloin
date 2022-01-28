@@ -15,7 +15,19 @@ function SelectCategories() {
       name: '카테고리명2',
     },
     {
-      id: 3,
+      id: 4,
+      name: '카테고리 예시',
+    },
+    {
+      id: 5,
+      name: '카테고리 예시',
+    },
+    {
+      id: 6,
+      name: '카테고리 예시',
+    },
+    {
+      id: 7,
       name: '카테고리 예시',
     },
   ]);
@@ -74,6 +86,7 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   padding: 1rem;
+  height: 20rem;
 `;
 
 const CateContainer = styled.div`
@@ -81,6 +94,7 @@ const CateContainer = styled.div`
   padding: 1rem;
   border: 1px solid ${BORDER_COLOR};
   border-radius: 0.1rem;
+  overflow-y: scroll;
 `;
 
 const CateItem = styled.li`
@@ -97,6 +111,7 @@ const SelectedCateContainer = styled.div`
   margin-left: 0.5rem;
   border: 1px solid ${BORDER_COLOR};
   border-radius: 0.1rem;
+  overflow-y: scroll;
 `;
 
 export default SelectCategories;
