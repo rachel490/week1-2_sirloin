@@ -1,18 +1,24 @@
-import React, { useState } from 'react';
+/* eslint-disable react/forbid-prop-types */
+import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
+import { MdClose } from 'react-icons/md';
 
-function ImageUpload() {
-  const [fileList, setFileList] = useState([]);
-
+function ImageUpload({ imageFiles, setImageFiles, type }) {
   const displayFileList = (e) => {
     const newFile = e.target.files[0].name;
-    setFileList([newFile, ...fileList]);
+
+    if (type === 'single') {
+      setImageFiles([newFile]);
+    } else if (imageFiles.every((item) => item !== newFile)) {
+      setImageFiles([newFile, ...imageFiles]);
+    }
   };
 
   const deleteImg = (e) => {
-    const target = e.target.previousSibling.innerText;
-    const updatedFileList = fileList.filter((file) => file !== target);
-    setFileList(updatedFileList);
+    const target = e.target.parentNode.previousSibling.innerText;
+    const updatedFileList = imageFiles.filter((file) => file !== target);
+    setImageFiles(updatedFileList);
   };
 
   return (
@@ -29,10 +35,12 @@ function ImageUpload() {
         </Label>
       </AddBtn>
       <ul>
-        {fileList.map((file) => (
-          <ListItem>
+        {imageFiles?.map((file) => (
+          <ListItem key={file} type={type}>
             <span>{file}</span>
-            <DeleteBtn type="button" key={file} onClick={deleteImg}>x</DeleteBtn>
+            <DeleteBtn type="button">
+              <MdClose className="icon" onClick={deleteImg} />
+            </DeleteBtn>
           </ListItem>
         ))}
       </ul>
@@ -42,13 +50,26 @@ function ImageUpload() {
 
 export default ImageUpload;
 
+ImageUpload.propTypes = {
+  imageFiles: PropTypes.array.isRequired,
+  setImageFiles: PropTypes.func.isRequired,
+  type: PropTypes.string,
+};
+
+ImageUpload.defaultProps = {
+  type: 'multiple',
+};
+
 const Wrap = styled.div`
   display: flex;
   align-items: flex-start;
+  padding: 20px;
+  border-top: 1px solid rgba(0,0,0,.1);
 `;
 
 const AddBtn = styled.div`
-  margin-top: 10px;
+  display: flex;
+  align-items: center;
 `;
 
 const Input = styled.input`
@@ -56,6 +77,8 @@ const Input = styled.input`
 `;
 
 const Label = styled.label`
+  display: flex;
+  align-items: center;
   padding: 7px 40px;
   border: 1px solid #00264B;
   border-radius: 5px;
@@ -65,6 +88,7 @@ const Label = styled.label`
 const ListItem = styled.li`
   display: flex;
   align-items: center;
+  height: ${(props) => ((props.type === 'single') ? '40px' : '30px')};
 
   span {
     width: 85px;
@@ -75,7 +99,15 @@ const ListItem = styled.li`
 const DeleteBtn = styled.button`
   border: 1px solid rgba(0,0,0,.3);
   border-radius: 50%;
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
   margin-left: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .icon {
+    font-size: 18px;
+    cursor: pointer;
+  }
 `;
