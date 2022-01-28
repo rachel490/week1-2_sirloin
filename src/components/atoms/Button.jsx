@@ -9,28 +9,29 @@ import styled, { css } from 'styled-components';
 
 // eslint-disable-next-line react/prop-types
 // eslint-disable-next-line no-unused-vars
-function Button({ width, height, color, constrast, text }) {
+function Button({ width, height, color, constrast, text, borderRadius }) {
   return (
     <BtnContainer
       width={width}
       height={height}
       color={color}
-      constrast={constrast}>
+      constrast={constrast}
+      borderRadius={borderRadius}>
       {text}
     </BtnContainer>
   );
 }
 
 const BtnContainer = styled.button`
-  ${({ color, width, height, constrast }) => css`
+  ${({ color, width, height, constrast, borderRadius }) => css`
     display: inline-flex;
     justify-content: center;
     align-items: center;
     padding: 0.2em 1em 0.4em 1em;
-    border: solid ${color} 1px;
+    border: solid ${color} ${borderRadius}px;
     border-radius: 4px;
-    width: ${width}px;
-    height: ${height}px;
+    width: ${width};
+    height: ${height};
     ${constrast
       ? css`
           background-color: ${color};
@@ -43,19 +44,21 @@ const BtnContainer = styled.button`
 `;
 
 Button.propTypes = {
-  width: PropTypes.number,
-  height: PropTypes.number,
+  width: PropTypes.string,
+  height: PropTypes.string,
   color: PropTypes.string,
   constrast: PropTypes.bool,
   text: PropTypes.string,
+  borderRadius: PropTypes.number,
 };
 
 Button.defaultProps = {
-  width: 100,
-  height: 30,
+  width: '100%',
+  height: '30px',
   color: 'black',
   constrast: false,
   text: '버튼',
+  borderRadius: 1,
 };
 
 export default Button;
