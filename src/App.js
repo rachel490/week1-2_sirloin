@@ -1,7 +1,14 @@
 import React from 'react';
+import { RecoilRoot } from 'recoil';
 
 function App() {
-  return <div className="App">App</div>;
+  return (
+    <RecoilRoot>
+      <div className="App">
+        app
+      </div>
+    </RecoilRoot>
+  );
 }
 
 export default App;
