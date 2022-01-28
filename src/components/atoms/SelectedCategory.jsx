@@ -4,7 +4,7 @@ import { AiOutlineClose } from 'react-icons/ai';
 
 function SelectedCategory() {
   const onClose = () => {
-    //
+    ///
   };
 
   return (
