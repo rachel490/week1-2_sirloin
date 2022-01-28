@@ -2,18 +2,18 @@ import { SettingFrame, SettingFrameItem } from 'components/atoms';
 import ToggleBtn from 'components/atoms/ToggleBtn';
 import React, { useState } from 'react';
 
-function MileageStatus() {
-  const [mileageStatus, setMileageStatus] = useState({ mileageStatus: true });
+function OtherOptions() {
+  const [optionsStatus, setOptionsStatus] = useState({ thanksCard: false });
 
   function onCheckedChange() {
-    setMileageStatus({ mileageStatus: !mileageStatus.mileageStatus });
+    setOptionsStatus({ thanksCard: !optionsStatus.thanksCard });
   }
 
   return (
     <SettingFrame title="상품 혜택 허용 설정">
       <SettingFrameItem title="마일리지 적립">
         <ToggleBtn
-          checked={mileageStatus.mileageStatus}
+          checked={optionsStatus.thanksCard}
           onChange={() => onCheckedChange()}
         />
       </SettingFrameItem>
@@ -21,4 +21,4 @@ function MileageStatus() {
   );
 }
 
-export default MileageStatus;
+export default OtherOptions;
