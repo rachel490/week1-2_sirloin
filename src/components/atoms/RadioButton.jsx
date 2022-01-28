@@ -3,7 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 function RadioButton({
-  id, name, text, select, setSelect,
+  name, text, select, setSelect,
 }) {
   return (
     <Item>
@@ -11,7 +11,7 @@ function RadioButton({
         type="radio"
         name={name}
         value={text}
-        checked={select === id}
+        checked={select === text}
         onChange={(e) => setSelect(e.target.value)}
       />
       <RadioBtnLabel />
@@ -23,7 +23,6 @@ function RadioButton({
 export default RadioButton;
 
 RadioButton.propTypes = {
-  id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
   select: PropTypes.string.isRequired,
