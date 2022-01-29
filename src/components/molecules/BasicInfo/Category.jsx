@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 function Category({ handleBasicInfo, title }) {
   return (
-    <SettingFramItem title="카테고리">
+    <SettingFramItem title="카테고리*">
       <SelectCategories handleBasicInfo={handleBasicInfo} title={title} />
     </SettingFramItem>
   );

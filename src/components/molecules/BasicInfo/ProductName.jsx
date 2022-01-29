@@ -8,8 +8,9 @@ function ProductName({ handleBasicInfo, title }) {
   const onInput = (e) => {
     handleBasicInfo(title, e);
   };
+
   return (
-    <SettingFramItem title="상품명">
+    <SettingFramItem title="상품명*">
       <InputContainer>
         <Input setInputData={onInput} placeholder="상품명을 입력해주세요." />
       </InputContainer>

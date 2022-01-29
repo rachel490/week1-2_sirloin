@@ -7,7 +7,7 @@ import { totalStockState } from 'utils/globalState';
 function TotalStock() {
   const totalStock = useRecoilValue(totalStockState);
   return (
-    <SettingFramItem title="상품 총 재고">
+    <SettingFramItem title="상품 총 재고*">
       <StockContainer>
         <p>
           {totalStock}
