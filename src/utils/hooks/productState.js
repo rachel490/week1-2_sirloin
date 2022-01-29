@@ -1,6 +1,8 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-param-reassign */
 import { useState } from 'react';
+import { useRecoilState } from 'recoil';
+import { productOption } from 'utils/globalState';
 
 const OPT_SET_ADD_BTN = 'optSetAddBtn';
 const OPT_ADD_BTN = 'optAddBtn';
@@ -40,6 +42,8 @@ const newOptAddition = () => ({
 
 const useProductState = () => {
   const [optSets, setOptSets] = useState([]);
+  // 리코일 도입
+  // const [optSets, setOptSets] = useRecoilState(productOption);
 
   const handleAdd = ({ name, id }) => {
     switch (name) {

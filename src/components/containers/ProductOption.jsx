@@ -1,11 +1,25 @@
 import { SettingFrame } from 'components/atoms';
 import OptSet from 'components/molecules/OptSet';
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import isSavedState, { registerFormState } from 'utils/globalState';
 import useProductState from 'utils/hooks/productState';
 
 function ProductOption() {
   const { optSets, Clickhandler, handleChange } = useProductState();
+  const isSaved = useRecoilValue(isSavedState);
+  const [registerForm, setRegisterForm] = useRecoilState(registerFormState);
+  const saveData = (key, value) => {
+    setRegisterForm({
+      ...registerForm,
+      [key]: value,
+    });
+  };
+
+  useEffect(() => {
+    saveData('productOption', optSets);
+  }, [isSaved]);
 
   return (
     <SettingFrame
