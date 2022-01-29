@@ -73,11 +73,6 @@ function DeliveryOption() {
 
   return (
     <SettingFrame title="상품 배송 설정">
-      <div>{orderTime.fromDate.toString()}</div>
-      <div>{orderTime.toDate.toString()}</div>
-      <div>{orderTime.earlyDeliveryDate.toString()}</div>
-      <div>{orderTime.normalDeliveryDate.toString()}</div>
-
       <SettingFramItem title="사용자 배송일 출발일 지정">
         <ToggleBtn
           isToggle={deliveryStatus.customDelivery}
