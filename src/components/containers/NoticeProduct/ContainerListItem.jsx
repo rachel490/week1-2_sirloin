@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Input from 'components/atoms/Input';
+import NoticeInput from './NoticeInput';
 
 function ContainerListItem({
   title, placeholder, name, value, onChange,
@@ -11,7 +11,7 @@ function ContainerListItem({
       <ListItemTitle>
         <span>{title}</span>
       </ListItemTitle>
-      <Input placeholder={placeholder} name={name} value={value} onChange={onChange} />
+      <NoticeInput placeholder={placeholder} name={name} value={value} onChange={onChange} />
     </ContainerItem>
   );
 }
