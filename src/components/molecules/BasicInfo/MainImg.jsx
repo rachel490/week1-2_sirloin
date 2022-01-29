@@ -13,7 +13,7 @@ function MainImg({ handleBasicInfo, title }) {
   return (
     <SettingFramItem title="상품 대표 이미지">
       <Wrapper>
-        <ImageUpload imageFiles={mainImages} setImageFiles={setMainImages} type="multiple" />
+        <ImageUpload imageFiles={mainImages} setImgFiles={setMainImages} single="false" />
       </Wrapper>
     </SettingFramItem>
   );

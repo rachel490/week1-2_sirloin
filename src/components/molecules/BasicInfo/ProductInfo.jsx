@@ -24,7 +24,7 @@ ProductInfo.propTypes = {
 };
 
 const InputContainer = styled.div`
-  padding: 0.8rem 0.5rem 0.8rem 0.5rem;
+  padding: ${({ theme }) => theme.padding.small};
 `;
 
 export default ProductInfo;

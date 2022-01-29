@@ -9,11 +9,13 @@ function ProductCode({ handleBasicInfo, title }) {
     handleBasicInfo(title, code);
   }, []);
   return (
-    <SettingFramItem title="상품코드">
-      <Wrapper>
-        <p>{code}</p>
-      </Wrapper>
-    </SettingFramItem>
+    <Wrapper>
+      <SettingFramItem title="상품코드">
+        <Container>
+          <p>{code}</p>
+        </Container>
+      </SettingFramItem>
+    </Wrapper>
   );
 }
 
@@ -23,10 +25,14 @@ ProductCode.propTypes = {
 };
 
 const Wrapper = styled.div`
+  height: 100%;
+  border-left: 1px solid ${({ theme }) => theme.colors.border};
+`;
+
+const Container = styled.div`
   display: flex;
   align-items: center;
-  padding: 12.8px 8px 12.8px 8px;
-  height: 4.1rem;
+  padding: ${({ theme }) => theme.padding.medium};
 `;
 
 export default ProductCode;

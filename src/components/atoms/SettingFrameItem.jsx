@@ -21,6 +21,7 @@ SettingFramItem.propTypes = {
 
 const FrameItem = styled.div`
     display: flex;
+    height: 100%;
     border-top: 1px solid ${BORDER_COLOR};
   `;
 

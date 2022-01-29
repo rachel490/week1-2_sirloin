@@ -1,6 +1,5 @@
 import SettingFrame from 'components/atoms/SettingFrame';
 import Category from 'components/molecules/BasicInfo/Category';
-import FilterTag from 'components/molecules/BasicInfo/FilterTag';
 import MainImg from 'components/molecules/BasicInfo/MainImg';
 import ProductCode from 'components/molecules/BasicInfo/ProductCode';
 import ProductInfo from 'components/molecules/BasicInfo/ProductInfo';
@@ -11,6 +10,7 @@ import React, { useEffect, useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import isSavedState, { registerFormState } from 'utils/globalState';
+import FilterTags from 'components/molecules/BasicInfo/FilterTags';
 
 function BasicInfo() {
   const isSaved = useRecoilValue(isSavedState);
@@ -32,13 +32,17 @@ function BasicInfo() {
   };
 
   useEffect(() => {
+    console.log(basicInfo);
+  }, [basicInfo]);
+
+  useEffect(() => {
     saveData('basicInfo', basicInfo);
   }, [isSaved]);
 
   return (
     <SettingFrame title="상품기본정보">
       <Category handleBasicInfo={handleBasicInfo} title="selectedCategory" />
-      <FilterTag />
+      <FilterTags handleBasicInfo={handleBasicInfo} title="selectedCategory" />
       <SettingFramItemWrapper>
         <SettingFramItemContainer>
           <ProductName handleBasicInfo={handleBasicInfo} title="productName" />

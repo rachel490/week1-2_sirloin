@@ -1,8 +1,9 @@
 import { SettingFrameItem } from 'components/atoms';
 import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
-function FilterTag() {
+function FilterTag({ selectedTag, setSelectedTag }) {
   const tags = [
     {
       id: 1,
@@ -40,7 +41,6 @@ function FilterTag() {
 
   const [search, setSearch] = useState('');
   const [onFocus, setOnFocus] = useState(false);
-  const [selectedTag, setSelectedTag] = useState([]);
   const inputRef = useRef();
 
   const deleteTag = (id) => {
@@ -106,6 +106,11 @@ function FilterTag() {
 
 export default FilterTag;
 
+FilterTag.propTypes = {
+  selectedTag: PropTypes.arrayOf(PropTypes.array).isRequired,
+  setSelectedTag: PropTypes.func.isRequired,
+};
+
 const Wrap = styled.div`
   position: relative;
 `;
@@ -116,7 +121,6 @@ const Content = styled.div`
 
 const InputWrap = styled.div`
   position: relative;
-
   button {
     position: absolute;
     right: 10px;
@@ -126,7 +130,6 @@ const InputWrap = styled.div`
     padding: 5px 10px;
     cursor: pointer;
   }
-
   input {
     padding: 10px 20px;
     border: 1px solid rgba(0, 0, 0, 0.1);
