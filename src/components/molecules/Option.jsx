@@ -12,15 +12,8 @@ import AdditionOptItem from './AdditionOpt';
 // import AdditionalOptionList from '../AdditionOpt/AdditionOptList';
 
 function Option({ option }) {
-  const {
-    id,
-    isTax,
-    optAdditions,
-    optName,
-    productPrice,
-    productSale,
-    productStock,
-  } = option;
+  const { id, optAdditions } = option;
+
   return (
     <Container
       id={id}
@@ -35,26 +28,26 @@ function Option({ option }) {
         />
       </Wrapper>
       <Wrapper>
-        <Input name="optName" placeholder="옵션명을 입력해주세요(필수)" />
+        <Input name={`optName_${id}`} placeholder="옵션명을 입력해주세요(필수)" />
       </Wrapper>
       <Wrapper>
         <UnitInput
-          name="productPrice"
+          name={`productPrice_${id}`}
           placeholder="상품 정상가 (필수)"
           unit="원"
         />
         <span>할인율</span>
         <UnitInput
-          name="productSale"
+          name={`productSale_${id}`}
           placeholder="상품 판매가 (필수)"
           unit="원"
         />
         <UnitInput
-          name="productStock"
+          name={`productStock_${id}`}
           placeholder="재고 (필수)"
           unit="개"
         />
-        <Dropdown name="isTax" />
+        <Dropdown name={`isTax_${id}`} />
       </Wrapper>
       {optAdditions.map((optAddition) => (
         <AdditionOptItem

@@ -8,27 +8,22 @@ import styled from 'styled-components';
 import { CgCornerDownRight } from 'react-icons/cg';
 import UnitInput from './UnitInput';
 
-function AdditionOptItem({
-  optAddition,
-}) {
-  const {
-    id,
-    additionOptName,
-    additionOptPrice,
-  } = optAddition;
+function AdditionOptItem({ optAddition }) {
+  const { id } = optAddition;
+
   return (
     <Container id={id}>
       <CgCornerDownRight width={20} height={20} />
       <LeftInputWrapper>
         <Input
           placeholder="추가 옵션명 (필수)"
-          name="additionOptName"
+          name={`additionOptName_${id}`}
         />
       </LeftInputWrapper>
       <UnitInput
         width={250}
         placeholder="추가 옵션 정상가 (필수)"
-        name="additionOptPrice"
+        name={`additionOptPrice_${id}`}
         unit="원"
       />
       <Button

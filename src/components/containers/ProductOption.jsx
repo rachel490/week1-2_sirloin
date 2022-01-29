@@ -32,7 +32,6 @@ function ProductOption() {
       };
 
       setOptSets([...optSets, newOptSet]);
-      // setOptions([...options, newOptSet.options[0]]);
     } else if (name === 'optAddBtn') {
       const newOption = {
         id: Date.now(),
@@ -115,6 +114,40 @@ function ProductOption() {
     }
   };
 
+  const handleChange = (e) => {
+    const { name: inputName, value } = e.target;
+    const [name, strId] = inputName.split('_');
+    const id = Number(strId);
+
+    const nextState = optSets.map((optSet) => {
+      const { options } = optSet;
+      optSet.options = options.map(
+        (option) => {
+          const { optAdditions } = option;
+
+          if (option.id === id) {
+            option[name] = value;
+
+            return option;
+          }
+
+          option.optAdditions = optAdditions.map((optAddition) => {
+            if (optAddition.id === id) {
+              optAddition[name] = value;
+            }
+            return optAddition;
+          });
+
+          return option;
+        },
+      );
+
+      return optSet;
+    });
+
+    setOptSets(nextState);
+  };
+
   const Clickhandler = (e) => {
     handleAdd(e);
     handleDelete(e);
@@ -127,6 +160,7 @@ function ProductOption() {
         isBackground
         isButton
         onClick={Clickhandler}
+        onChange={handleChange}
       >
         <div>옵션세트를 추가하여 구성해주세요.</div>
 
@@ -140,6 +174,7 @@ function ProductOption() {
       isBackground
       isButton
       onClick={Clickhandler}
+      onChange={handleChange}
     >
       {optSets.map((optSet) => <OptSet key={optSet.id} optSet={optSet} />)}
     </SettingFrame>

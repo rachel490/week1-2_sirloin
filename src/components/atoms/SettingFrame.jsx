@@ -6,10 +6,10 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 function SettingFrame({
-  title, isButton, isBackground, onClick, children,
+  title, isButton, isBackground, onClick, onChange, children,
 }) {
   return (
-    <SettingFrameContainer isBackground={isBackground} onClick={onClick}>
+    <SettingFrameContainer isBackground={isBackground} onClick={onClick} onChange={onChange}>
       <FrameTitle isButton={isButton}>
         <span>{title}</span>
         {isButton && <button name="optSetAddBtn_">추가하기</button>}
@@ -24,6 +24,7 @@ SettingFrame.propTypes = {
   isButton: PropTypes.bool,
   isBackground: PropTypes.bool,
   onClick: PropTypes.func,
+  onChange: PropTypes.func,
   children: PropTypes.node.isRequired,
 };
 
