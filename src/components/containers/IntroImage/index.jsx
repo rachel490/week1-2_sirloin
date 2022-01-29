@@ -1,20 +1,21 @@
 /* eslint-disable no-console */
 import ImageUpload from 'components/atoms/ImageUpload';
 import SettingFrame from 'components/atoms/SettingFrame';
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
-function ProductImage() {
+function IntroImage() {
+  const [images, setImages] = useState([]);
   return (
     <Wrap>
       <SettingFrame title="상품 소개 이미지">
-        <ImageUpload />
+        <ImageUpload imgFiles={images} setImgFiles={setImages} />
       </SettingFrame>
     </Wrap>
   );
 }
 
-export default ProductImage;
+export default IntroImage;
 
 const Wrap = styled.div`
   margin:50px;
