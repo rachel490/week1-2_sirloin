@@ -1,10 +1,9 @@
-import React, { useState, useRef } from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
 import { MdClose } from 'react-icons/md';
 import PropTypes from 'prop-types';
 
-function ImageUpload({ single }) {
-  const [imgFiles, setImgFiles] = useState([]);
+function ImageUpload({ single, setImgFiles, imgFiles }) {
   const imgRef = useRef();
 
   const displayFileList = (e) => {
@@ -61,6 +60,8 @@ export default ImageUpload;
 
 ImageUpload.propTypes = {
   single: PropTypes.bool,
+  imgFiles: PropTypes.arrayOf(PropTypes.array).isRequired,
+  setImgFiles: PropTypes.func.isRequired,
 };
 
 ImageUpload.defaultProps = {
