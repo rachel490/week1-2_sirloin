@@ -2,13 +2,11 @@
 import { SettingFrameItem } from 'components/atoms';
 import Calendar from 'components/atoms/Calendar';
 import RadioButton from 'components/atoms/RadioButton';
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-function Term({ name }) {
-  const [select, setSelect] = useState('제한 없음');
-
+function Term({ name, select, setSelect }) {
   return (
     <SettingFrameItem title={`상품 ${name} 기한`}>
       <Content>
@@ -44,6 +42,8 @@ export default Term;
 
 Term.propTypes = {
   name: PropTypes.string.isRequired,
+  select: PropTypes.string.isRequired,
+  setSelect: PropTypes.func.isRequired,
 };
 
 const Content = styled.div`
