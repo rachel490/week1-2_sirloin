@@ -6,39 +6,37 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-function Term({ name, title }) {
+function Term({ name }) {
   const [select, setSelect] = useState('제한 없음');
 
   return (
-    <Wrap>
-      <SettingFrameItem title={title}>
-        <Content>
-          <RadioButton
-            name={name}
-            text="제한 없음"
-            select={select}
-            setSelect={setSelect}
-          />
-          <RadioButton
-            name={name}
-            text={`미${name}`}
-            select={select}
-            setSelect={setSelect}
-          />
-          <RadioButton
-            name={name}
-            text={`${name} 기간 설정`}
-            select={select}
-            setSelect={setSelect}
-          />
-          <CalendarWrap>
-            <Calendar time className="calendar" />
-            <span>~</span>
-            <Calendar time className="calendar" />
-          </CalendarWrap>
-        </Content>
-      </SettingFrameItem>
-    </Wrap>
+    <SettingFrameItem title={`상품 ${name} 기한`}>
+      <Content>
+        <RadioButton
+          name={name}
+          text="제한 없음"
+          select={select}
+          setSelect={setSelect}
+        />
+        <RadioButton
+          name={name}
+          text={`미${name}`}
+          select={select}
+          setSelect={setSelect}
+        />
+        <RadioButton
+          name={name}
+          text={`${name} 기간 설정`}
+          select={select}
+          setSelect={setSelect}
+        />
+        <CalendarWrap>
+          <Calendar time className="calendar" />
+          <span>~</span>
+          <Calendar time className="calendar" />
+        </CalendarWrap>
+      </Content>
+    </SettingFrameItem>
   );
 }
 
@@ -46,12 +44,7 @@ export default Term;
 
 Term.propTypes = {
   name: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-}
-
-const Wrap = styled.div`
-  margin: 50px;
-`;
+};
 
 const Content = styled.div`
   padding: 20px;
