@@ -1,3 +1,6 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable comma-dangle */
+/* eslint-disable no-param-reassign */
 /* eslint-disable react/jsx-closing-bracket-location */
 import { SettingFrame } from 'components/atoms';
 import Button from 'components/atoms/Button';
@@ -6,18 +9,21 @@ import styled from 'styled-components';
 import ContainerListCustomItem from './ContainerListCustomItem';
 import ContainerListItem from './ContainerListItem';
 
+function test(productList, customList) {
+  console.log(productList);
+}
+
 function NoticeProduct() {
   const [productList, setProductList] = useState([
     {
-      name: '',
+      productName: '',
       fromProduct: '',
       grade: '',
       howStock: '',
       foodCategory: '',
+      productKey: `${(+new Date()).toString(36)}`,
+      customList: [],
     },
-  ]);
-  const [customList, setCustomList] = useState([
-    { customTitle: '', customDescription: '' },
   ]);
 
   const handleInputChange = (event, index) => {
@@ -37,11 +43,13 @@ function NoticeProduct() {
     setProductList([
       ...productList,
       {
-        name: '',
+        productName: '',
         fromProduct: '',
         grade: '',
         howStock: '',
+        productKey: `${(+new Date()).toString(36)}`,
         foodCategory: '',
+        customList: [],
       },
     ]);
   };
@@ -49,8 +57,11 @@ function NoticeProduct() {
   return (
     <SettingFrame title="상품 정보 고시" isBackground>
       <ContainerOuterBox>
+        <button type="button" onClick={() => test(productList)}>
+          button
+        </button>
         {productList.map((info, index) => (
-          <ContainerInnerBox key={info.name}>
+          <ContainerInnerBox key={info.productKey}>
             <ContainerHeader>
               <div>
                 정보고시
@@ -69,8 +80,8 @@ function NoticeProduct() {
               <ContainerListItem
                 title="제품명 / 중량"
                 placeholder="제품명 / 중량을 입력해 주세요."
-                name="name"
-                value={info.name}
+                name="productName"
+                value={info.productName}
                 onChange={(event) => handleInputChange(event, index)}
               />
               <ContainerListItem
@@ -102,8 +113,9 @@ function NoticeProduct() {
                 onChange={(event) => handleInputChange(event, index)}
               />
               <ContainerListCustomItem
-                listState={customList}
-                setListState={setCustomList}
+                productKey={info.productKey}
+                productList={productList}
+                setProductList={setProductList}
               />
             </ContainerList>
           </ContainerInnerBox>

@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import ImageUpload from 'components/atoms/ImageUpload';
 import SettingFrame from 'components/atoms/SettingFrame';
 import React, { useEffect, useState } from 'react';
@@ -9,8 +8,6 @@ import isSavedState, { registerFormState } from 'utils/globalState';
 function RecommendedImage() {
   const [imgFiles, setImgFiles] = useState([]);
   const [registerForm, setRegisterForm] = useRecoilState(registerFormState);
-
-  console.log('recommend', registerForm, imgFiles);
 
   const saveData = (key, value) => {
     setRegisterForm({

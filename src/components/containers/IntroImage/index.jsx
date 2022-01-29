@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import ImageUpload from 'components/atoms/ImageUpload';
 import SettingFrame from 'components/atoms/SettingFrame';
 import React, { useEffect, useState } from 'react';

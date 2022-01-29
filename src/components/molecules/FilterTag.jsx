@@ -1,46 +1,46 @@
 import { SettingFrameItem } from 'components/atoms';
 import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
-function FilterTag() {
+function FilterTag({ selectedTag, setSelectedTag }) {
   const tags = [
     {
       id: 1,
-      name: "베스트",
+      name: '베스트',
     },
     {
       id: 2,
-      name: "베베",
+      name: '베베',
     },
     {
       id: 3,
-      name: "베나라",
+      name: '베나라',
     },
     {
       id: 4,
-      name: "구아바",
+      name: '구아바',
     },
     {
       id: 5,
-      name: "구아아",
+      name: '구아아',
     },
     {
       id: 6,
-      name: "tag1",
+      name: 'tag1',
     },
     {
       id: 7,
-      name: "tag2",
+      name: 'tag2',
     },
     {
       id: 8,
-      name: "tagg",
+      name: 'tagg',
     },
   ];
 
   const [search, setSearch] = useState('');
   const [onFocus, setOnFocus] = useState(false);
-  const [selectedTag, setSelectedTag] = useState([]);
   const inputRef = useRef();
 
   const deleteTag = (id) => {
@@ -106,8 +106,12 @@ function FilterTag() {
 
 export default FilterTag;
 
+FilterTag.propTypes = {
+  selectedTag: PropTypes.arrayOf(PropTypes.array).isRequired,
+  setSelectedTag: PropTypes.func.isRequired,
+};
+
 const Wrap = styled.div`
-  margin: 50px;
   position: relative;
 `;
 
@@ -117,7 +121,6 @@ const Content = styled.div`
 
 const InputWrap = styled.div`
   position: relative;
-
   button {
     position: absolute;
     right: 10px;
@@ -127,7 +130,6 @@ const InputWrap = styled.div`
     padding: 5px 10px;
     cursor: pointer;
   }
-
   input {
     padding: 10px 20px;
     border: 1px solid rgba(0, 0, 0, 0.1);
@@ -152,11 +154,11 @@ const TagItem = styled.li`
   width: 100px;
   height: 30px;
   border-radius: 5px;
-  background-color: rgba(234,247,216); 
+  background-color: rgba(234,247,216);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 5px;
+  margin: 0 5px 5px;
 `;
 
 const SelectedTagList = styled.ul`

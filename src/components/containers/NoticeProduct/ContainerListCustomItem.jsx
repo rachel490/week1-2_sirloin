@@ -1,33 +1,49 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/no-array-index-key */
 import Button from 'components/atoms/Button';
-import Input from 'components/atoms/Input';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import NoticeInput from './NoticeInput';
 
-function ContainerListCustomItem({ listState, setListState }) {
+function ContainerListCustomItem({
+  productKey, productList,
+  setProductList,
+}) {
+  const [customList, setCustomList] = useState([
+    { productKey, customTitle: '', customDescription: '' },
+  ]);
+
   const handleInputChange = (event, index) => {
-    const { customTitle, customDescription } = event.target;
-    const list = [...listState];
-    list[index][customTitle] = customDescription;
-    setListState(list);
+    const { name, value } = event.target;
+    const list = [...customList];
+    list[index][name] = value;
+    setCustomList(list);
   };
 
   const handleRemoveClick = (index) => {
-    const list = [...listState];
+    const list = [...customList];
     list.splice(index, 1);
-    setListState(list);
+    setCustomList(list);
   };
 
   const handleAddClick = () => {
-    setListState([...listState, { customTitle: '', customDescription: '' }]);
+    setCustomList([...customList, { productKey, customTitle: '', customDescription: '' }]);
   };
+
+  // 하위 옵션 취함된 데이터를 위에서 합치기
+  useEffect(() => {
+    const filteredProductList = productList.filter((item) => item.productKey === productKey);
+    filteredProductList[0].customList = customList;
+    console.log(filteredProductList);
+  }, [customList]);
 
   return (
     <>
-      {listState.map((item, index) => (
-        <CustomItemList key={item.customTitle}>
-          <Input placeholder="항목 제목 자유 입력" value={item.customTitle} onChange={(event) => handleInputChange(event, index)} />
-          <Input placeholder="내용을 입력해주세요." value={item.customDescription} onChange={(event) => handleInputChange(event, index)} />
+      {customList.map((item, index) => (
+        <CustomItemList key={productKey + index}>
+          <NoticeInput placeholder="항목 제목 자유 입력" value={item.customTitle} name="customTitle" onChange={(event) => handleInputChange(event, index)} />
+          <NoticeInput placeholder="내용을 입력해주세요." value={item.customDescription} name="customDescription" onChange={(event) => handleInputChange(event, index)} />
           <Button
             text="삭제"
             color="red"
@@ -59,8 +75,10 @@ const CustomItemList = styled.div`
 `;
 
 ContainerListCustomItem.propTypes = {
-  listState: PropTypes.arrayOf(PropTypes.array).isRequired,
-  setListState: PropTypes.func.isRequired,
+  productKey: PropTypes.string.isRequired,
+  productList: PropTypes.arrayOf(PropTypes.object).isRequired,
+  setProductList: PropTypes.func.isRequired,
+
 };
 
 export default ContainerListCustomItem;

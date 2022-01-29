@@ -1,12 +1,12 @@
-import React, { useState, useRef } from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
 import { MdClose } from 'react-icons/md';
 import PropTypes from 'prop-types';
 
-function ImageUpload({ single }) {
-  const [imgFiles, setImgFiles] = useState([]);
+function ImageUpload({
+  single, setImgFiles, imgFiles, name,
+}) {
   const imgRef = useRef();
-
   const displayFileList = (e) => {
     const newFile = e.target.files[0]?.name;
     const isSame = imgFiles.some((file) => file === newFile);
@@ -41,6 +41,7 @@ function ImageUpload({ single }) {
           id="imgUpload"
           onChange={displayFileList}
           ref={imgRef}
+          name={name}
         />
       </InputBox>
       <ul>
@@ -57,10 +58,16 @@ function ImageUpload({ single }) {
   );
 }
 
+ImageUpload.prototype = {
+  name: PropTypes.string,
+};
+
 export default ImageUpload;
 
 ImageUpload.propTypes = {
   single: PropTypes.bool,
+  imgFiles: PropTypes.arrayOf(PropTypes.array).isRequired,
+  setImgFiles: PropTypes.func.isRequired,
 };
 
 ImageUpload.defaultProps = {
@@ -71,7 +78,6 @@ const Wrap = styled.div`
   display: flex;
   align-items: flex-start;
   padding: 20px;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
 `;
 
 const InputBox = styled.div`
@@ -98,7 +104,7 @@ const ListItem = styled.li`
   height: 30px;
 
   span {
-    width: 120px;
+    width: 250px;
     height: 30px;
   }
 `;
