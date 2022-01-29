@@ -21,7 +21,7 @@ function TotalStock() {
 const StockContainer = styled.div`
   display: flex;
   align-items: center;
-  padding: 0.8rem 0.5rem 0.8rem 0.8rem;
+  padding: ${({ theme }) => theme.padding.small};
   height: 3rem;
 `;
 

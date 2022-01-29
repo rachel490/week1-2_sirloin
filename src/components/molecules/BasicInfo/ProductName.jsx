@@ -10,11 +10,13 @@ function ProductName({ handleBasicInfo, title }) {
   };
 
   return (
-    <SettingFramItem title="상품명*">
-      <InputContainer>
-        <Input setInputData={onInput} placeholder="상품명을 입력해주세요." />
-      </InputContainer>
-    </SettingFramItem>
+    <Wrapper>
+      <SettingFramItem title="상품명*">
+        <InputContainer>
+          <Input setInputData={onInput} placeholder="상품명을 입력해주세요." />
+        </InputContainer>
+      </SettingFramItem>
+    </Wrapper>
   );
 }
 
@@ -23,8 +25,14 @@ ProductName.propTypes = {
   handleBasicInfo: PropTypes.func.isRequired,
 };
 
+const Wrapper = styled.div`
+  height: 100%;
+`;
+
 const InputContainer = styled.div`
-  padding: 0.8rem 0.5rem 0.8rem 0.5rem;
+  /* height: 100%; */
+  padding: ${({ theme }) => theme.padding.small};
+  /* padding: 0.8rem 0.5rem 0.8rem 0.5rem; */
 `;
 
 export default ProductName;

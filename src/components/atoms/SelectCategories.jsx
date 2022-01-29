@@ -31,6 +31,14 @@ function SelectCategories({ handleBasicInfo, title }) {
       id: 7,
       name: '카테고리6',
     },
+    {
+      id: 8,
+      name: '카테고리7',
+    },
+    {
+      id: 9,
+      name: '카테고리8',
+    },
   ]);
   const [checkedList, setCheckedList] = useState([]);
 
@@ -103,10 +111,20 @@ const Wrapper = styled.div`
 
 const CateContainer = styled.div`
   flex: 5;
-  padding: 1rem;
-  border: 1px solid ${BORDER_COLOR};
-  border-radius: 0.1rem;
+  padding: ${({ theme }) => theme.padding.medium};
+  border: 1px solid ${({ theme }) => theme.colors.border};
+  border-radius: ${({ theme }) => theme.border.borderRadius};;
   overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    width: 3px;
+    background-color: grey;
+    border-radius: ${({ theme }) => theme.border.borderRadius};
+  }
 `;
 
 const CateItem = styled.li`
@@ -114,16 +132,26 @@ const CateItem = styled.li`
 `;
 
 const CateTitle = styled.p`
-  margin-left: 0.5rem;
+  margin-left: ${({ theme }) => theme.padding.small};
 `;
 
 const SelectedCateContainer = styled.div`
   flex: 5;
-  padding: 1rem;
-  margin-left: 0.5rem;
+  padding: ${({ theme }) => theme.padding.medium};
+  margin-left: ${({ theme }) => theme.padding.small};
   border: 1px solid ${BORDER_COLOR};
-  border-radius: 0.1rem;
+  border-radius: ${({ theme }) => theme.border.borderRadius};
   overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    width:3px;
+    background-color: grey;
+    border-radius: ${({ theme }) => theme.border.borderRadius};
+  }
 `;
 
 export default SelectCategories;
