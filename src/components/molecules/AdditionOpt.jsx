@@ -1,14 +1,21 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/forbid-prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Input } from 'components/atoms';
 import { FONT_RED } from 'constants/color';
 import styled from 'styled-components';
 import { CgCornerDownRight } from 'react-icons/cg';
-import UnitInput from '../OptionItem/UnitInput';
+import UnitInput from './UnitInput';
 
 function AdditionOptItem({
-  id,
+  optAddition,
 }) {
+  const {
+    id,
+    additionOptName,
+    additionOptPrice,
+  } = optAddition;
   return (
     <Container id={id}>
       <CgCornerDownRight width={20} height={20} />
@@ -25,7 +32,7 @@ function AdditionOptItem({
         unit="원"
       />
       <Button
-        name="additionOptDelBtn"
+        name={`additionOptDelBtn_${id}`}
         width="60px"
         borderRadius={5}
         text="삭제"
@@ -48,7 +55,7 @@ const LeftInputWrapper = styled.div`
 `;
 
 AdditionOptItem.propTypes = {
-  id: PropTypes.number.isRequired,
+  optAddition: PropTypes.object.isRequired,
 };
 
 export default AdditionOptItem;
