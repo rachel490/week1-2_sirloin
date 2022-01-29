@@ -10,6 +10,11 @@ export const registerFormState = atom({
   default: {},
 });
 
+export const productOption = atom({
+  key: 'productOption',
+  default: [],
+});
+
 export const totalStockState = atom({
   key: 'totalStockState',
   default: 0,

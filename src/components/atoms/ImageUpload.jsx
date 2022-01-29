@@ -3,7 +3,9 @@ import styled from 'styled-components';
 import { MdClose } from 'react-icons/md';
 import PropTypes from 'prop-types';
 
-function ImageUpload({ single, setImgFiles, imgFiles }) {
+function ImageUpload({
+  single, setImgFiles, imgFiles, name,
+}) {
   const imgRef = useRef();
   const displayFileList = (e) => {
     const newFile = e.target.files[0]?.name;
@@ -39,6 +41,7 @@ function ImageUpload({ single, setImgFiles, imgFiles }) {
           id="imgUpload"
           onChange={displayFileList}
           ref={imgRef}
+          name={name}
         />
       </InputBox>
       <ul>
@@ -54,6 +57,10 @@ function ImageUpload({ single, setImgFiles, imgFiles }) {
     </Wrap>
   );
 }
+
+ImageUpload.prototype = {
+  name: PropTypes.string,
+};
 
 export default ImageUpload;
 

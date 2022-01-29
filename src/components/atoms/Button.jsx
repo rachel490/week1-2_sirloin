@@ -1,3 +1,4 @@
+/* eslint-disable react/require-default-props */
 /* eslint-disable react/jsx-closing-bracket-location */
 /* eslint-disable indent */
 /* eslint-disable operator-linebreak */
@@ -9,9 +10,10 @@ import styled, { css } from 'styled-components';
 
 // eslint-disable-next-line react/prop-types
 // eslint-disable-next-line no-unused-vars
-function Button({ width, height, color, constrast, text, borderRadius, onClick }) {
+function Button({ name, width, height, color, constrast, text, borderRadius, onClick }) {
   return (
     <BtnContainer
+      name={name}
       width={width}
       height={height}
       color={color}
@@ -46,6 +48,7 @@ const BtnContainer = styled.button`
 `;
 
 Button.propTypes = {
+  name: PropTypes.string,
   width: PropTypes.string,
   height: PropTypes.string,
   color: PropTypes.string,
