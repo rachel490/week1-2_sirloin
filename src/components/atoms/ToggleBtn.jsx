@@ -2,8 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-function ToggleBtn({ size, onChange }) {
-  return <ToggleButton type="checkbox" size={size} onChange={onChange} />;
+function ToggleBtn({
+  size, onChange, disabled, isToggle,
+}) {
+  return <ToggleButton type="checkbox" size={size} checked={isToggle} onChange={onChange} disabled={disabled} />;
 }
 
 const ToggleButton = styled.input`
@@ -34,12 +36,20 @@ const ToggleButton = styled.input`
         transform: scale(1.7);
         box-shadow: 0 2px 5px rgb(0,0,0,.2);
         transition: .2s;
-    }    
+    }
+    &:disabled{
+        background: #cac9c9;
+        ::before{
+            background:rgb(250,250,250);
+            
+    }
 `;
 
 ToggleBtn.propTypes = {
   size: PropTypes.number,
   onChange: PropTypes.func.isRequired,
+  disabled: PropTypes.bool.isRequired,
+  isToggle: PropTypes.bool.isRequired,
 };
 
 ToggleBtn.defaultProps = {
