@@ -13,47 +13,6 @@ import styled from 'styled-components';
 import isSavedState, { registerFormState } from 'utils/globalState';
 
 function BasicInfo() {
-  const options = [
-    {
-      img: 'dd',
-      option: [
-        {
-          option1: 'Dd',
-          stock: 1,
-        },
-        {
-          option2: 'Dd',
-          stock: 1,
-        },
-      ],
-    },
-    {
-      img: 'dd',
-      option: [
-        {
-          option1: 'Dd',
-          stock: 1,
-        },
-        {
-          option2: 'Dd',
-          stock: 1,
-        },
-      ],
-    },
-  ];
-  // test
-  // console.log(options);
-  const countTotalStock = () => {
-    let totalStock = 0;
-    options.forEach((optionSet) => {
-      optionSet.option.forEach((option) => {
-        totalStock += option.stock;
-      });
-    });
-    console.log(totalStock);
-  };
-  console.log(countTotalStock);
-
   const isSaved = useRecoilValue(isSavedState);
   const [registerForm, setRegisterForm] = useRecoilState(registerFormState);
   const [basicInfo, setBasicInfo] = useState({});
@@ -75,6 +34,17 @@ function BasicInfo() {
   useEffect(() => {
     saveData('basicInfo', basicInfo);
   }, [isSaved]);
+
+  const countTotalStock = (options) => {
+    let totalStock = 0;
+    options.forEach((optionSet) => {
+      optionSet.option.forEach((option) => {
+        totalStock += option.stock;
+      });
+    });
+    console.log(totalStock);
+  };
+  console.log(countTotalStock);
 
   useEffect(() => {
     console.log(registerForm);
