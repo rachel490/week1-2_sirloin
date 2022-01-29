@@ -1,5 +1,5 @@
 import BasicInfo from 'components/containers/BasicInfo/BasicInfo';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import isSavedState, { registerFormState } from 'utils/globalState';
 import Button from 'components/atoms/Button';
@@ -10,20 +10,27 @@ function App() {
   const registerForm = useRecoilValue(registerFormState);
 
   const checkRequiredValue = () => {
-    const basicInform = registerForm.basicInfo;
-    if (!basicInform.selectedCategory
-      || !basicInform.productName
-      || !basicInform.productInfo
-      || !basicInform.totalStock
-      // && option
-    ) {
-      alert('필수 항목을 입력하세요');
+    if (Object.keys(registerForm).length > 0) {
+      const basicInform = registerForm.basicInfo;
+      if (!basicInform.selectedCategory
+        || !basicInform.productName
+        || !basicInform.productInfo
+        || !basicInform.totalStock > 0
+        // && option
+      ) {
+        alert('필수 항목을 입력하세요');
+      } else {
+        alert('저장되었습니다');
+      }
     }
   };
   const onSave = () => {
-    setIsSaved(true);
-    checkRequiredValue();
+    setIsSaved((c) => c + 1);
   };
+
+  useEffect(() => {
+    checkRequiredValue();
+  }, [registerForm]);
 
   return (
     <RegisterForm>

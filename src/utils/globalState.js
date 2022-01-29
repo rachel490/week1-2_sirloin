@@ -2,7 +2,7 @@ import { atom } from 'recoil';
 
 export const isSavedState = atom({
   key: 'isSavedState',
-  default: false,
+  default: 0,
 });
 
 export const registerFormState = atom({
