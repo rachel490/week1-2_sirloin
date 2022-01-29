@@ -18,8 +18,9 @@ function Option({ option }) {
     if (productPrice === 0 || productSale === 0) return '할인율 없음';
 
     const rate = (1 - productSale / productPrice) * 100;
+    const discountRate = rate > -1 ? `${rate.toFixed()}%` : '할인율 없음';
 
-    return `${rate.toFixed()}%`;
+    return discountRate;
   };
 
   return (

@@ -8,6 +8,8 @@ const ADDITION_OPT_ADD_BTN = 'additionOptAddBtn';
 const OPT_SET_DEL_BTN = 'optSetDelBtn';
 const OPT_DEL_BTN = 'optDelBtn';
 const ADDITION_OPT_DEL_BTN = 'additionOptDelBtn';
+const IMAGE = 'image';
+
 const newOptSet = () => ({
   id: Date.now() - 1,
   image: '',
@@ -124,33 +126,49 @@ const useProductState = () => {
     const [name, strId] = inputName.split('_');
     const id = Number(strId);
 
-    const nextState = optSets.map((optSet) => {
-      const { options } = optSet;
-      optSet.options = options.map(
-        (option) => {
-          const { optAdditions } = option;
-
-          if (option.id === id) {
-            option[name] = value;
-
-            return option;
+    switch (name) {
+      case IMAGE: {
+        const nextState = optSets.map((optSet) => {
+          if (optSet.id === id) {
+            optSet.image = value;
           }
 
-          option.optAdditions = optAdditions.map((optAddition) => {
-            if (optAddition.id === id) {
-              optAddition[name] = value;
-            }
-            return optAddition;
-          });
+          return optSet;
+        });
 
-          return option;
-        },
-      );
+        setOptSets(nextState);
+        break;
+      }
+      default: {
+        const nextState = optSets.map((optSet) => {
+          const { options } = optSet;
+          optSet.options = options.map(
+            (option) => {
+              const { optAdditions } = option;
 
-      return optSet;
-    });
+              if (option.id === id) {
+                option[name] = value;
 
-    setOptSets(nextState);
+                return option;
+              }
+
+              option.optAdditions = optAdditions.map((optAddition) => {
+                if (optAddition.id === id) {
+                  optAddition[name] = value;
+                }
+                return optAddition;
+              });
+
+              return option;
+            },
+          );
+
+          return optSet;
+        });
+
+        setOptSets(nextState);
+      }
+    }
   };
 
   const Clickhandler = (e) => {

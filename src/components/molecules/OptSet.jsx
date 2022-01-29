@@ -9,7 +9,7 @@ import ImageUpload from 'components/atoms/ImageUpload';
 import Option from './Option';
 
 function OptSet({ optSet }) {
-  const { id, image, options } = optSet;
+  const { id, options } = optSet;
 
   return (
     <Container>
@@ -24,7 +24,7 @@ function OptSet({ optSet }) {
       </Wrapper>
       <OptSetList>
         <Wrapper>
-          <ImageUpload />
+          <ImageUpload name={`image_${id}`} />
         </Wrapper>
         {options.map((option) => <Option key={option.id} option={option} />)}
         <Button
