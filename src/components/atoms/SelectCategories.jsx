@@ -9,27 +9,27 @@ function SelectCategories({ handleBasicInfo, title }) {
   const [categories, setCategories] = useState([
     {
       id: 0,
-      name: '선택한 카테고리명',
+      name: '카테고리1',
     },
     {
       id: 2,
-      name: '카테고리명2',
+      name: '카테고리2',
     },
     {
       id: 4,
-      name: '카테고리 예시',
+      name: '카테고리3',
     },
     {
       id: 5,
-      name: '카테고리 예시',
+      name: '카테고리4',
     },
     {
       id: 6,
-      name: '카테고리 예시',
+      name: '카테고리5',
     },
     {
       id: 7,
-      name: '카테고리 예시',
+      name: '카테고리6',
     },
   ]);
   const [checkedList, setCheckedList] = useState([]);

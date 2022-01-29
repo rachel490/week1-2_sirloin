@@ -35,20 +35,6 @@ function BasicInfo() {
     saveData('basicInfo', basicInfo);
   }, [isSaved]);
 
-  const countTotalStock = (options) => {
-    let totalStock = 0;
-    options.forEach((optionSet) => {
-      optionSet.option.forEach((option) => {
-        totalStock += option.stock;
-      });
-    });
-    console.log(totalStock);
-  };
-  console.log(countTotalStock);
-
-  useEffect(() => {
-    console.log(registerForm);
-  }, [registerForm]);
   return (
     <Wrapper>
       <SettingFrame title="상품기본정보">
