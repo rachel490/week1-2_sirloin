@@ -1,3 +1,4 @@
+/* eslint-disable react/require-default-props */
 import React, { useRef } from 'react';
 import styled from 'styled-components';
 import { MdClose } from 'react-icons/md';
@@ -58,16 +59,13 @@ function ImageUpload({
   );
 }
 
-ImageUpload.prototype = {
-  name: PropTypes.string,
-};
-
 export default ImageUpload;
 
 ImageUpload.propTypes = {
   single: PropTypes.bool,
-  imgFiles: PropTypes.arrayOf(PropTypes.array).isRequired,
-  setImgFiles: PropTypes.func.isRequired,
+  imgFiles: PropTypes.arrayOf(PropTypes.array),
+  setImgFiles: PropTypes.func,
+  name: PropTypes.string,
 };
 
 ImageUpload.defaultProps = {

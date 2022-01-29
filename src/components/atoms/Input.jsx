@@ -9,7 +9,7 @@ function Input({
   setInputData,
   name,
 }) {
-  return <StInput type="text" name={name} placeholder={placeholder} value={inputData} onChange={(e) => setInputData(e.target.value)} />;
+  return <StInput type="text" name={name} placeholder={placeholder} value={inputData} onChange={(e) => setInputData && setInputData(e.target.value)} />;
 }
 
 export default Input;
@@ -17,8 +17,8 @@ export default Input;
 Input.propTypes = {
   name: PropTypes.string,
   placeholder: PropTypes.string.isRequired,
-  inputData: PropTypes.string.isRequired,
-  setInputData: PropTypes.func.isRequired,
+  inputData: PropTypes.string,
+  setInputData: PropTypes.func,
 };
 
 const StInput = styled.input`
