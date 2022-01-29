@@ -32,10 +32,6 @@ function BasicInfo() {
   };
 
   useEffect(() => {
-    console.log(basicInfo);
-  }, [basicInfo]);
-
-  useEffect(() => {
     saveData('basicInfo', basicInfo);
   }, [isSaved]);
 
@@ -54,7 +50,7 @@ function BasicInfo() {
       <ProductInfo handleBasicInfo={handleBasicInfo} title="productInfo" />
       <Thumbnail handleBasicInfo={handleBasicInfo} title="thumbnail" />
       <MainImg handleBasicInfo={handleBasicInfo} title="mainImg" />
-      <TotalStock />
+      <TotalStock handleBasicInfo={handleBasicInfo} title="totalStock" />
     </SettingFrame>
   );
 }

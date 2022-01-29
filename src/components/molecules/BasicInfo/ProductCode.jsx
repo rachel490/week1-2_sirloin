@@ -1,11 +1,12 @@
 import SettingFramItem from 'components/atoms/SettingFrameItem';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 function ProductCode({ handleBasicInfo, title }) {
-  const code = Date.now();
+  const [code, setCode] = useState(0);
   useEffect(() => {
+    setCode(Date.now());
     handleBasicInfo(title, code);
   }, []);
   return (

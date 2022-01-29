@@ -1,11 +1,20 @@
 import SettingFramItem from 'components/atoms/SettingFrameItem';
-import React from 'react';
-import { useRecoilValue } from 'recoil';
+import React, { useEffect } from 'react';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { totalStockState } from 'utils/globalState';
+import PropTypes from 'prop-types';
 
-function TotalStock() {
+function TotalStock({ handleBasicInfo, title }) {
   const totalStock = useRecoilValue(totalStockState);
+  const setTotalStack = useSetRecoilState(totalStockState);
+  useEffect(() => {
+    setTotalStack(1);
+  }, []);
+
+  useEffect(() => {
+    handleBasicInfo(title, totalStock);
+  }, [totalStock]);
   return (
     <SettingFramItem title="상품 총 재고*">
       <StockContainer>
@@ -17,6 +26,11 @@ function TotalStock() {
     </SettingFramItem>
   );
 }
+
+TotalStock.propTypes = {
+  title: PropTypes.string.isRequired,
+  handleBasicInfo: PropTypes.func.isRequired,
+};
 
 const StockContainer = styled.div`
   display: flex;

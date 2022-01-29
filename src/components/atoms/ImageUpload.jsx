@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 
 function ImageUpload({ single, setImgFiles, imgFiles }) {
   const imgRef = useRef();
-
   const displayFileList = (e) => {
     const newFile = e.target.files[0]?.name;
     const isSame = imgFiles.some((file) => file === newFile);
