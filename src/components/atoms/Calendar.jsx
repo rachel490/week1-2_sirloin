@@ -6,7 +6,9 @@ import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import PropTypes from 'prop-types';
 import { DatePicker, DateTimePicker } from '@mui/lab';
 
-function Calendar({ time, state, onChange }) {
+function Calendar({
+  time, state, onChange, minDate,
+}) {
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       {time ? (
@@ -17,6 +19,7 @@ function Calendar({ time, state, onChange }) {
           onChange={(newValue) => {
             onChange(newValue);
           }}
+          minDate={(minDate || 1)}
         />
       ) : (
         <DatePicker
@@ -32,12 +35,13 @@ function Calendar({ time, state, onChange }) {
   );
 }
 
-Calendar.defaultProps = { time: false };
+Calendar.defaultProps = { time: false, minDate: 1 };
 
 Calendar.propTypes = {
   time: PropTypes.bool,
   state: PropTypes.instanceOf(Date).isRequired,
   onChange: PropTypes.func.isRequired,
+  minDate: PropTypes.number,
 };
 
 export default Calendar;
