@@ -26,7 +26,8 @@ const Container = styled.div`
     display: flex;
     align-items: center;
     width: ${({ width }) => `${width}px`};
-
+    margin-right: 20px;
+    
     & > span{
         display: inline-block;
         margin-left: 10px;

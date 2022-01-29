@@ -12,7 +12,7 @@ function AdditionOptItem({ optAddition }) {
   const { id } = optAddition;
 
   return (
-    <Container id={id}>
+    <Container>
       <CgCornerDownRight width={20} height={20} />
       <LeftInputWrapper>
         <Input
@@ -39,14 +39,16 @@ function AdditionOptItem({ optAddition }) {
 
 const Container = styled.li`
     display: flex;
-    width:100%;
+    width:80%;
     justify-content: space-between;
     align-items: center;
+    margin: 0 auto;
     margin-bottom: 10px;
 `;
 
 const LeftInputWrapper = styled.div`
     width: 350px;
+    margin-right: 10px;
 `;
 
 AdditionOptItem.propTypes = {

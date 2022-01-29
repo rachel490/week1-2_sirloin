@@ -15,9 +15,7 @@ function Option({ option }) {
   const { id, optAdditions } = option;
 
   return (
-    <Container
-      id={id}
-    >
+    <Container>
       <Wrapper isButton>
         <Button
           name={`optDelBtn_${id}`}
@@ -56,8 +54,8 @@ function Option({ option }) {
         />
       ))}
       <Wrapper>
-        <div>
-          <AddOptionButton
+        <AddButtonWrapper>
+          <Button
             name={`additionOptAddBtn_${id}`}
             text="+"
             width="25px"
@@ -65,7 +63,7 @@ function Option({ option }) {
             borderRadius={5}
           />
           <span>추가 옵션 상품 추가</span>
-        </div>
+        </AddButtonWrapper>
       </Wrapper>
     </Container>
   );
@@ -73,21 +71,17 @@ function Option({ option }) {
 
 Option.propTypes = {
   option: PropTypes.object.isRequired,
-  // handleAdd: PropTypes.func.isRequired,
-  // deleteOption: PropTypes.func.isRequired,
-  // changeOption: PropTypes.func.isRequired,
 };
 
 const Container = styled.div`
   border: 1px solid ${BORDER_COLOR};
-  padding: 10px;
   border-radius: 10px;
-  margin: 10px;
+  margin: 10px 0;
 `;
 
 const Wrapper = styled.div`
     display: flex;
-    margin-top: 10px;
+    margin: 10px;
     align-items: center;
     ${({ isButton }) => (isButton ? css`
         justify-content: end;
@@ -99,46 +93,10 @@ const Wrapper = styled.div`
     `}
 `;
 
-const AddOptionButton = styled(Button)`
-    margin-right: 10px;
-    border: 1px solid ${BORDER_COLOR};
+const AddButtonWrapper = styled.div`
+  & > span{
+    margin-left: 5px;
+  }
 `;
 
 export default Option;
-
-/* const { id: optionItemId, additionalOption: initAdditionOpt } = option;
-  const [additionalOptions, setAdditionalOptions] = useState(initAdditionOpt);
-
-  const handleDelete = (e) => {
-    const { id } = e.currentTarget;
-    const { tagName } = e.target;
-
-    if (tagName === 'BUTTON') {
-      const nextState = additionalOptions
-        .filter((additionalOption) => additionalOption.id !== Number(id));
-
-      setAdditionalOptions(nextState);
-    }
-  };
-
-  const handler = (e) => {
-    const { name } = e.target;
-    if (name === 'optDelBtn') {
-      handleDelete(e);
-    } else if (name === 'additionOptAddBtn') {
-      handleAdd(e);
-    }
-  };
-
-  const handleChange = (e) => {
-    const { id } = e.currentTarget;
-    const { name, value } = e.target;
-    const nextState = additionalOptions.map((additionalOption) => {
-      if (additionalOption.id === Number(id)) {
-        additionalOption[name] = value;
-      }
-      return additionalOption;
-    });
-
-    setAdditionalOptions(nextState);
-  }; */
