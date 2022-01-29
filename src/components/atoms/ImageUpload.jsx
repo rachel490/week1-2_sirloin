@@ -72,7 +72,6 @@ const Wrap = styled.div`
   display: flex;
   align-items: flex-start;
   padding: 20px;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
 `;
 
 const InputBox = styled.div`
@@ -99,7 +98,7 @@ const ListItem = styled.li`
   height: 30px;
 
   span {
-    width: 120px;
+    width: 250px;
     height: 30px;
   }
 `;

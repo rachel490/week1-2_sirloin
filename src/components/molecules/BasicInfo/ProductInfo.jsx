@@ -10,7 +10,7 @@ function ProductInfo({ handleBasicInfo, title }) {
   };
 
   return (
-    <SettingFramItem title="상품 구성 소개 정보">
+    <SettingFramItem title="상품 구성 소개 정보*">
       <InputContainer>
         <Input placeholder="상품 구성 소개 정보를 입력해 주세요." setInputData={onInput} />
       </InputContainer>

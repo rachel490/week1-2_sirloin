@@ -35,45 +35,25 @@ function BasicInfo() {
     saveData('basicInfo', basicInfo);
   }, [isSaved]);
 
-  const countTotalStock = (options) => {
-    let totalStock = 0;
-    options.forEach((optionSet) => {
-      optionSet.option.forEach((option) => {
-        totalStock += option.stock;
-      });
-    });
-    console.log(totalStock);
-  };
-  console.log(countTotalStock);
-
-  useEffect(() => {
-    console.log(registerForm);
-  }, [registerForm]);
   return (
-    <Wrapper>
-      <SettingFrame title="상품기본정보">
-        <Category handleBasicInfo={handleBasicInfo} title="selectedCategory" />
-        <FilterTag />
-        <SettingFramItemWrapper>
-          <SettingFramItemContainer>
-            <ProductName handleBasicInfo={handleBasicInfo} title="productName" />
-          </SettingFramItemContainer>
-          <SettingFramItemContainer>
-            <ProductCode handleBasicInfo={handleBasicInfo} title="productCode" />
-          </SettingFramItemContainer>
-        </SettingFramItemWrapper>
-        <ProductInfo handleBasicInfo={handleBasicInfo} title="productInfo" />
-        <Thumbnail handleBasicInfo={handleBasicInfo} title="thumbnail" />
-        <MainImg handleBasicInfo={handleBasicInfo} title="mainImg" />
-        <TotalStock />
-      </SettingFrame>
-    </Wrapper>
+    <SettingFrame title="상품기본정보">
+      <Category handleBasicInfo={handleBasicInfo} title="selectedCategory" />
+      <FilterTag />
+      <SettingFramItemWrapper>
+        <SettingFramItemContainer>
+          <ProductName handleBasicInfo={handleBasicInfo} title="productName" />
+        </SettingFramItemContainer>
+        <SettingFramItemContainer>
+          <ProductCode handleBasicInfo={handleBasicInfo} title="productCode" />
+        </SettingFramItemContainer>
+      </SettingFramItemWrapper>
+      <ProductInfo handleBasicInfo={handleBasicInfo} title="productInfo" />
+      <Thumbnail handleBasicInfo={handleBasicInfo} title="thumbnail" />
+      <MainImg handleBasicInfo={handleBasicInfo} title="mainImg" />
+      <TotalStock />
+    </SettingFrame>
   );
 }
-
-const Wrapper = styled.div`
-  padding: 2rem;
-`;
 
 const SettingFramItemWrapper = styled.div`
   display: flex;

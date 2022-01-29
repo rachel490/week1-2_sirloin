@@ -10,4 +10,9 @@ export const registerFormState = atom({
   default: {},
 });
 
+export const totalStockState = atom({
+  key: 'totalStockState',
+  default: 0,
+});
+
 export default isSavedState;
