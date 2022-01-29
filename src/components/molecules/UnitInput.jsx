@@ -16,7 +16,7 @@ function UnitInput({
 }
 
 UnitInput.propTypes = {
-  width: PropTypes.number.isRequired,
+  width: PropTypes.number,
   placeholder: PropTypes.string.isRequired,
   name: PropTypes.string,
   unit: PropTypes.string.isRequired,
@@ -27,7 +27,7 @@ const Container = styled.div`
     align-items: center;
     width: ${({ width }) => `${width}px`};
     margin-right: 20px;
-    
+
     & > span{
         display: inline-block;
         margin-left: 10px;

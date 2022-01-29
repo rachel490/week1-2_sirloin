@@ -1,7 +1,6 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable react/forbid-prop-types */
-/* eslint-disable no-param-reassign */
-import React, { useState } from 'react';
+/* eslint-disable no-shadow */
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Input } from 'components/atoms';
 import { BORDER_COLOR, FONT_RED } from 'constants/color';
@@ -9,10 +8,19 @@ import styled, { css } from 'styled-components';
 import Dropdown from 'components/atoms/Dropdown';
 import UnitInput from './UnitInput';
 import AdditionOptItem from './AdditionOpt';
-// import AdditionalOptionList from '../AdditionOpt/AdditionOptList';
 
 function Option({ option }) {
-  const { id, optAdditions } = option;
+  const {
+    id, productPrice, productSale, optAdditions,
+  } = option;
+
+  const getDiscountRate = (productPrice, productSale) => {
+    if (productPrice === 0 || productSale === 0) return '할인율 없음';
+
+    const rate = (1 - productSale / productPrice) * 100;
+
+    return `${rate.toFixed()}%`;
+  };
 
   return (
     <Container>
@@ -34,7 +42,7 @@ function Option({ option }) {
           placeholder="상품 정상가 (필수)"
           unit="원"
         />
-        <span>할인율</span>
+        <span>{getDiscountRate(productPrice, productSale)}</span>
         <UnitInput
           name={`productSale_${id}`}
           placeholder="상품 판매가 (필수)"
