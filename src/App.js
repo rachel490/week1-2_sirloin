@@ -1,4 +1,4 @@
-import BasicInfo from 'components/containers/BasicInfo/BasicInfo';
+import BasicInfo from 'components/containers/BasicInfo';
 import React, { useEffect } from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import isSavedState, { registerFormState } from 'utils/globalState';
@@ -12,10 +12,11 @@ function App() {
   const checkRequiredValue = () => {
     if (Object.keys(registerForm).length > 0) {
       const basicInform = registerForm.basicInfo;
-      if (!basicInform.selectedCategory
-        || !basicInform.productName
-        || !basicInform.productInfo
-        || !basicInform.totalStock > 0
+      if (
+        !basicInform.selectedCategory ||
+        !basicInform.productName ||
+        !basicInform.productInfo ||
+        !basicInform.totalStock > 0
         // && option
       ) {
         alert('필수 항목을 입력하세요');
@@ -36,11 +37,18 @@ function App() {
     <RegisterForm>
       <TitleWrapper>
         <p>등록</p>
-        <Button width="80px" height="30px" text="저장하기" color="purple" constrast="true" borderRadius="10" onClick={onSave} />
+        <Button
+          width="80px"
+          height="30px"
+          text="저장하기"
+          color="purple"
+          constrast="true"
+          borderRadius="10"
+          onClick={onSave}
+        />
       </TitleWrapper>
       <BasicInfo />
     </RegisterForm>
-
   );
 }
 
